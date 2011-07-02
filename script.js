@@ -8,6 +8,13 @@
 		.script('script1.js')
 		.script('script2.js')
 		.wait(function(){
-			// code to execute
+			// If window.onload has already fired then just call the code that should run on window onload...
+			if (_winload) {
+				myapp.init();
+			} 
+			// ...otherwise assign the function to be called when the window.onload event is triggered
+			else {
+				window.addEventListener('load', myapp.init, false);
+			}
 		})
 }())
